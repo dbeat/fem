@@ -34,7 +34,8 @@ find_package(Git REQUIRED)
 
 # include_directories( ${Boost_INCLUDE_DIRS} )
 
-# Eigen exports a CMake target called Eigen3::Eigen which can be imported using the find_package CMake command and used by calling target_link_libraries
+# Eigen exports a CMake target called Eigen3::Eigen which can be imported 
+#using the find_package CMake command and used by calling target_link_libraries
 if (TARGET Eigen3::Eigen)
   # message("EIGEN FOUND")
 endif (TARGET Eigen3::Eigen)

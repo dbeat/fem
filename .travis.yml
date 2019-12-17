@@ -19,22 +19,19 @@ install:
 - touch $HOME/.cache/mydependency.so
 
 before_install:
-  # https://lxml.de/installation.html
   - sudo apt-get install --yes software-properties-common
   - sudo add-apt-repository --yes ppa:fenics-packages/fenics
   - sudo apt-get update --yes
   - sudo apt-get install --yes --no-install-recommends fenics
 
-
 # install:
-  # - conda install --yes -c conda-forge --file requirements.txt
-
 
 script:
     mkdir -p build && cd build
     cmake ..
     make
     ctest
-  # https://dev.to/j0nimost/using-codecov-with-travis-ci-pytest-cov-1dfj
-
+    make doc
+    # https://dev.to/j0nimost/using-codecov-with-travis-ci-pytest-cov-1dfj
+ 
 # after_success:
