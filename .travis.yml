@@ -1,0 +1,34 @@
+# sudo: false
+dist: bionic
+services:
+  - xvfb
+
+language: python
+
+python:
+  - '3.7'
+
+addons:
+  apt:
+    packages:
+
+before_install:
+  # https://lxml.de/installation.html
+  - sudo apt-get install software-properties-common
+  - sudo add-apt-repository ppa:fenics-packages/fenics
+  - sudo apt-get update
+  - sudo apt-get install --no-install-recommends fenics
+
+
+# install:
+  # - conda install --yes -c conda-forge --file requirements.txt
+
+
+script:
+    mkdir -p build && cd build
+    cmake ..
+    make
+    ctest
+  # https://dev.to/j0nimost/using-codecov-with-travis-ci-pytest-cov-1dfj
+
+# after_success:
