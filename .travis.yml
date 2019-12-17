@@ -1,23 +1,29 @@
-# sudo: false
-dist: bionic
-services:
-  - xvfb
+language: cpp
+os: linux
+compiler: gcc
 
-language: python
-
-python:
-  - '3.7'
+cache: # see https://docs.travis-ci.com/user/caching/
+- directories:
+  - $HOME/.cache
 
 addons:
   apt:
-    packages:
+    packages: 
+      - lcov
+      - doxygen
+
+install:
+# (fake) install dependencies (usually involves wget, configure, make, ...)
+# install into cache folder (build binaries+headers only, no sources and do NOT build there)
+- mkdir -p $HOME/.cache
+- touch $HOME/.cache/mydependency.so
 
 before_install:
   # https://lxml.de/installation.html
-  - sudo apt-get install software-properties-common
-  - sudo add-apt-repository ppa:fenics-packages/fenics
-  - sudo apt-get update
-  - sudo apt-get install --no-install-recommends fenics
+  - sudo apt-get install --yes software-properties-common
+  - sudo add-apt-repository --yes ppa:fenics-packages/fenics
+  - sudo apt-get update --yes
+  - sudo apt-get install --yes --no-install-recommends fenics
 
 
 # install:
